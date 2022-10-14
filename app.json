@@ -44,7 +44,7 @@
         {
           "file": "sentry-expo/upload-sourcemaps",
           "config": {
-            "organization": "Aluisio Alves",
+            "organization": "aluisio-alves",
             "project": "calculator",
             "authToken": "9ca4ffdac14b48ca98ea50aa01343ef90957e7d2e500425d98612bbf65653e6c"
           }

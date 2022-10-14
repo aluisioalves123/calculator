@@ -14,7 +14,7 @@ Sentry.init({
   enableNative: true,
   dsn: 'https://7ac5af495c9b4ab9bf42732f7fac8f63@o4503984009707520.ingest.sentry.io/4503984010625024',
   enableInExpoDevelopment: true,
-  debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+  debug: false, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
 });
 
 const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL, {
@@ -23,7 +23,6 @@ const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL, {
 
 export default function App() {
   try {
-    throw 'problema'
     const [interstitialLoaded, setInterstitialLoaded] = useState(false);
 
     const loadInterstitial = () => {
@@ -95,7 +94,6 @@ export default function App() {
           break
       }
     }
-
 
     return (
       <SafeAreaView className="flex flex-col" style={{backgroundColor: '#23222D'}}>
