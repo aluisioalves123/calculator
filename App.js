@@ -21,12 +21,30 @@ export default function App() {
     return null;
   }
 
+  const operationSymbol = () => {
+    switch (operation) {
+      case "+":
+        return 'plus'
+        break
+      case "-":
+        return 'minus'
+        break
+      case "x":
+        return 'times'
+        break
+      case "/":
+        return 'divide'
+        clearKeyboard()
+        break
+    }
+  } 
+
   return (
     <SafeAreaView className="flex flex-col" style={{backgroundColor: '#23222D'}}>
       <View className="flex basis-2/5 justify-end items-end p-8">
         <View className='flex flex-row items-center pr-1'>
           <Text className='text-white pr-4 text-2xl tracking-widest'>{firstNumber}</Text>
-          <Text className='text-red-600 text-2xl'>{operation}</Text>
+          <FontAwesome5 name={operationSymbol()} size={18} color='#FF6471' />
           <Text className='text-white pl-4 text-2xl tracking-widest'>{secondNumber}</Text>
         </View>
         <View className='flex flex-row'>

@@ -1,5 +1,5 @@
-import React from 'react';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import React from 'react'
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 
 const ButtonIcon = (props) => {
   return (
@@ -7,4 +7,4 @@ const ButtonIcon = (props) => {
   );
 }
 
-export default ButtonIcon;
+export default ButtonIcon

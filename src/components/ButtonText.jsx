@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React from 'react'
+import { View, Text } from 'react-native'
 
 const ButtonText = (props) => {
   return (
@@ -9,4 +9,4 @@ const ButtonText = (props) => {
   );
 }
 
-export default ButtonText;
+export default ButtonText

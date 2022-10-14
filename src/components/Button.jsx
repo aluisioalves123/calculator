@@ -1,5 +1,5 @@
-import React from 'react';
-import { Pressable } from 'react-native';
+import React from 'react'
+import { Pressable } from 'react-native'
 
 const Button = (props) => {
   return (
@@ -9,4 +9,4 @@ const Button = (props) => {
   );
 }
 
-export default Button;
+export default Button
