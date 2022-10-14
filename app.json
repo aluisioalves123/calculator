@@ -35,6 +35,21 @@
       "eas": {
         "projectId": "a0a6dd99-bd85-4652-996e-db77eea00341"
       }
+    },
+    "plugins": [
+      "sentry-expo"
+    ],
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "Aluisio Alves",
+            "project": "calculator",
+            "authToken": "9ca4ffdac14b48ca98ea50aa01343ef90957e7d2e500425d98612bbf65653e6c"
+          }
+        }
+      ]
     }
   },
   "react-native-google-mobile-ads": {
