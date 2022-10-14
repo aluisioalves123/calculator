@@ -1,16 +1,64 @@
 import { useFonts, Inter_700Bold, Inter_400Regular } from '@expo-google-fonts/inter';
-import { Text, View, SafeAreaView } from 'react-native';
+import { Text, View, SafeAreaView, Button } from 'react-native';
 import useStore from './src/store'
+
+import { BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType, RewardedInterstitialAd, RewardedAdEventType } from 'react-native-google-mobile-ads';
+import { useState, useEffect } from 'react';
 
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 import Keyboard from './src/components/Keyboard';
 
+const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL, {
+  requestNonPersonalizedAdsOnly: true
+});
+
 export default function App() {
+  const [interstitialLoaded, setInterstitialLoaded] = useState(false);
+
+  const loadInterstitial = () => {
+    const unsubscribeLoaded = interstitial.addAdEventListener(
+      AdEventType.LOADED,
+      () => {
+        setInterstitialLoaded(true);
+      }
+    );
+
+    const unsubscribeClosed = interstitial.addAdEventListener(
+      AdEventType.CLOSED,
+      () => {
+        setInterstitialLoaded(false);
+        interstitial.load();
+      }
+    );
+
+    interstitial.load();
+
+    return () => {
+      unsubscribeClosed();
+      unsubscribeLoaded();
+    }
+  }
+
+  useEffect(() => {
+    const unsubscribeInterstitialEvents = loadInterstitial();
+
+    return () => {
+      unsubscribeInterstitialEvents();
+    };
+  }, [])
+
   const result = useStore(state => state.result)
   const firstNumber = useStore(state => state.firstNumber)
   const operation = useStore(state => state.operation)
   const secondNumber = useStore(state => state.secondNumber)
+
+  useEffect(() => {
+    if (result != '' && interstitialLoaded) {
+      interstitial.show()
+    }
+  }, [result])
+
 
   let [fontsLoaded] = useFonts({
     Inter_700Bold,
@@ -34,10 +82,10 @@ export default function App() {
         break
       case "/":
         return 'divide'
-        clearKeyboard()
         break
     }
-  } 
+  }
+
 
   return (
     <SafeAreaView className="flex flex-col" style={{backgroundColor: '#23222D'}}>
@@ -50,7 +98,6 @@ export default function App() {
         <View className='flex flex-row'>
           <Text className='text-white text-5xl' style={{fontFamily: 'Inter_700Bold'}}>{result}</Text>
         </View>
-        
       </View>
       <Keyboard />
     </SafeAreaView>
